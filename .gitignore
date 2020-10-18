@@ -13,12 +13,15 @@
 /frontend/mern-exercise-tracker/build
 
 # misc
-/frontend/mern-exercise-tracker/.DS_Store
-/frontend/mern-exercise-tracker/.env.local
-/frontend/mern-exercise-tracker/.env.development.local
-/frontend/mern-exercise-tracker/.env.test.local
-/frontend/mern-exercise-tracker/.env.production.local
+/backend/mern-exercise-tracker/.DS_Store
+/backend/mern-exercise-tracker/.env.local
+/backend/mern-exercise-tracker/.env.development.local
+/backend/mern-exercise-tracker/.env.test.local
+/backend/mern-exercise-tracker/.env.production.local
 
 /frontend/mern-exercise-tracker/npm-debug.log*
 /frontend/mern-exercise-tracker/yarn-debug.log*
 /frontend/mern-exercise-tracker/yarn-error.log*
+/backend/mern-exercise-tracker/npm-debug.log*
+/backend/mern-exercise-tracker/yarn-debug.log*
+/backend/mern-exercise-tracker/yarn-error.log*
