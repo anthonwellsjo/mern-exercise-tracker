@@ -7,18 +7,18 @@
 /frontend/mern-exercise-tracker/node_modules
 
 # testing
-/coverage
+/frontend/mern-exercise-tracker/coverage
 
 # production
-/build
+/frontend/mern-exercise-tracker/build
 
 # misc
-.DS_Store
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
+/frontend/mern-exercise-tracker/.DS_Store
+/frontend/mern-exercise-tracker/.env.local
+/frontend/mern-exercise-tracker/.env.development.local
+/frontend/mern-exercise-tracker/.env.test.local
+/frontend/mern-exercise-tracker/.env.production.local
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+/frontend/mern-exercise-tracker/npm-debug.log*
+/frontend/mern-exercise-tracker/yarn-debug.log*
+/frontend/mern-exercise-tracker/yarn-error.log*
