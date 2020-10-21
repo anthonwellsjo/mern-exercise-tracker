@@ -9,7 +9,8 @@ export default function () {
 
     const history = useHistory();
 
-    const [exercise, setExercise] = useState({ username: "", description: "", duration: 0, date: new Date(), users: [] });
+    const [exercise, setExercise] = useState({ username: "", description: "", duration: 0, date: new Date() });
+    const [users, setUsers] = useState({ users: [] });
 
     const onChangeUsername = e => {
         const value = e.target.value;
@@ -24,13 +25,13 @@ export default function () {
         setExercise(prev => ({ ...prev, duration: value }))
     }
     const onChangeDate = date => {
-        setExercise(prev => ({ ...prev, username: date }))
+        setExercise(prev => ({ ...prev, date: date }))
     }
 
     const onSubmit = e => {
         e.preventDefault();
 
-        const newExercise = exercise;
+        const newExercise = JSON.stringify(exercise);
         console.log("new exc", newExercise);
         axios.post("http://localhost:5000/exercises/add", exercise)
             .then(res => console.log(res.data))
@@ -41,7 +42,20 @@ export default function () {
     const userInput = useRef();
 
     useEffect(() => {
-        setExercise(prev => ({ ...prev, username: "test user", users: ["test user"] }))
+        axios.get("http://localhost:5000/users/")
+            .then(res => {
+                if (res.data.length > 0) {
+                    setUsers({ users: res.data.map(user => user.username) });
+                    setExercise({
+                        username: res.data[0].username,
+                        duration: 0,
+                        date: new Date()
+                    });
+                }
+            })
+
+
+        // setExercise(prev => ({ ...prev, username: "test user", users: ["test user"] }))
     }, [])
 
     return (
@@ -57,7 +71,7 @@ export default function () {
                         value={exercise.username}
                         onChange={onChangeUsername}
                     >{
-                            exercise.users.map(u => {
+                            users.users.map(u => {
                                 return <option
                                     key={u}
                                     value={u}>
@@ -68,9 +82,18 @@ export default function () {
                     </select>
                 </div>
                 <div className="form-group">
-                    <label>Duration (in minutes): </label>
+                    <label>Description: </label>
                     <input
                         type="text"
+                        className="form-control"
+                        value={exercise.description}
+                        onChange={onChangeDescription}
+                    />
+                </div>
+                <div className="form-group">
+                    <label>Duration (in minutes): </label>
+                    <input
+                        type="number"
                         className="form-control"
                         value={exercise.duration}
                         onChange={onChangeDuration}
@@ -81,7 +104,7 @@ export default function () {
                     <div>
                         <DatePicker
                             selected={exercise.date}
-                            onChange={onChangeDate}
+                            onChange={date => onChangeDate(date)}
                         />
                     </div>
                 </div>
